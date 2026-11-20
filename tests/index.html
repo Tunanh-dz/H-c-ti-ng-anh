@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kiểm thử hàm thuần</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
+    li { margin: .35rem 0; }
+    .pass { color: #15803d; } .fail { color: #b91c1c; }
+    #summary { font-size: 1.25rem; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <h1>Kiểm thử hàm thuần</h1>
+  <p id="summary">Đang chạy…</p>
+  <ul id="list"></ul>
+  <script type="module">
+    import { cases } from './cases.js';
+    const list = document.getElementById('list');
+    let failed = 0;
+    for (const [name, fn] of cases) {
+      const li = document.createElement('li');
+      try { fn(); li.className = 'pass'; li.textContent = '✔ ' + name; }
+      catch (e) { failed++; li.className = 'fail'; li.textContent = `✘ ${name}: ${e.message}`; }
+      list.appendChild(li);
+    }
+    const s = document.getElementById('summary');
+    s.textContent = failed ? `${failed}/${cases.length} ca KHÔNG đạt` : `Tất cả ${cases.length} ca đều đạt ✔`;
+    s.className = failed ? 'fail' : 'pass';
+  </script>
+</body>
+</html>

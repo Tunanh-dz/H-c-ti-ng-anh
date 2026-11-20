@@ -1,0 +1,6 @@
+# Cài đặt riêng của trình soạn thảo / máy
+.claude/
+.vscode/
+__pycache__/
+desktop.ini
+Thumbs.db
